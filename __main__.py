@@ -1,7 +1,9 @@
 import random
-from turtle import Turtle
+from turtle import Turtle, Screen
 from typing import Tuple, List
+from string import ascii_letters
 coach = Turtle()
+screen = Screen()
 coach.speed(0)
 coach.shape('turtle')
 width = 1200
@@ -37,6 +39,22 @@ def draw_blanks(ans: str) -> None:
         coach.down()
 
 
+def take_turn(incorrect, correct, answer):
+    letter = screen.textinput('Guess', 'Guess a lettter')
+    if letter is None or len(letter) != 1 or letter not in ascii_letters or (
+            letter in incorrect or letter in set(correct)):
+        pass
+    elif letter in answer:
+        # look at each letter in our answer and see if its what we guessed
+        # if it is, we want change it both in correct and graphically
+        pass
+    else:
+        incorrect.append(letter)
+        # draw a part of the hangman
+    return (incorrect, correct)
+
+
 answer, correct, wrong_guesses = setup()
 draw_blanks(answer)
 print(answer)
+wrong_guesses, correct = take_turn(wrong_guesses, correct, answer)
