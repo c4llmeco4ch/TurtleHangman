@@ -45,9 +45,10 @@ def take_turn(incorrect, correct, answer):
             letter in incorrect or letter in set(correct)):
         pass
     elif letter in answer:
-        # look at each letter in our answer and see if its what we guessed
-        # if it is, we want change it both in correct and graphically
-        pass
+        for i, let in enumerate(answer):
+            if let == letter:
+                correct[i] = letter
+        # if it is, we want change it graphically
     else:
         incorrect.append(letter)
         # draw a part of the hangman
